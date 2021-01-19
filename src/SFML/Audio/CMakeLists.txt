@@ -41,6 +41,8 @@ set(CODECS_SRC
     ${INCROOT}/SoundFileReader.hpp
     ${SRCROOT}/SoundFileReaderFlac.hpp
     ${SRCROOT}/SoundFileReaderFlac.cpp
+    ${SRCROOT}/SoundFileReaderMp3.hpp
+    ${SRCROOT}/SoundFileReaderMp3.cpp
     ${SRCROOT}/SoundFileReaderOgg.hpp
     ${SRCROOT}/SoundFileReaderOgg.cpp
     ${SRCROOT}/SoundFileReaderWav.hpp
@@ -64,11 +66,13 @@ elseif(SFML_OS_ANDROID)
     set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${PROJECT_SOURCE_DIR}/extlibs/headers/AL")
     set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${PROJECT_SOURCE_DIR}/extlibs/android")
 endif()
+set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${PROJECT_SOURCE_DIR}/extlibs/headers")
 
 # find external libraries
 sfml_find_package(OpenAL INCLUDE "OPENAL_INCLUDE_DIR" LINK "OPENAL_LIBRARY")
 sfml_find_package(VORBIS INCLUDE "VORBIS_INCLUDE_DIRS" LINK "VORBIS_LIBRARIES")
 sfml_find_package(FLAC INCLUDE "FLAC_INCLUDE_DIR" LINK "FLAC_LIBRARY")
+sfml_find_package(Minimp3 INCLUDE "MINIMP3_INCLUDE_DIR")
 
 # avoids warnings in vorbisfile.h
 target_compile_definitions(VORBIS INTERFACE "OV_EXCLUDE_STATIC_CALLBACKS")
